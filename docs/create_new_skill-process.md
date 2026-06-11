@@ -45,6 +45,8 @@ The description is the primary trigger mechanism — Claude Code uses it to deci
 
 Distill the essential purpose. Don't echo the user's phrasing — capture the *gist* of what the skill is and when it should fire. Lead with what the skill does (third person), then include trigger context.
 
+The combined `description` (plus `when_to_use`, if used) is truncated at 1,536 characters in the skill listing, so put the key use case first — trailing context is the first thing lost.
+
 Evaluate the description through each lens:
 - Gist: Does it capture what the skill IS, or is it echoing what the user said?
 - Name + description as a pair: Read them together. Does the description add signal beyond the name, or just restate it?
@@ -91,9 +93,11 @@ description: [What it does]. Use when [trigger context]. (drop the second part i
 ```
 - Name: The essence of what the skill does. Lowercase, hyphens. Avoid verbose names.
 - Description: Lean and precise. Third person. Lead with what the skill does, follow with trigger context. This is the primary triggering mechanism — revisit step 4 guidance if needed.
+- `when_to_use` (optional): A separate frontmatter field for richer trigger context — trigger phrases or example requests. It's appended to the description in the listing and counts toward the same 1,536-character cap. Use it only when the trigger context is too rich to fit cleanly inside `description`; otherwise keep everything in `description`.
 
 **Body:**
 - Start with `STARTER_CHARACTER = [emoji]` — This signals when the skill is active. Pick an emoji that represents the skill's purpose as much as possible.
+- Write standing instructions, not one-time steps. Once invoked, SKILL.md content enters the conversation and stays for the rest of the session — Claude does not re-read the file on later turns. Every line is a recurring token cost, so keep the body lean and phrase guidance to apply throughout the task.
 - Concise instructions. Assume Claude is smart, but help guide and focus it by providing good order and progressive disclosure.
 - Use principles + anti-examples, not good examples to copy (avoids collapsing solution space)
 - Avoid markdown tables - use lists or prose instead (tables require rendering to read easily)
