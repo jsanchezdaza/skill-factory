@@ -1,6 +1,6 @@
 ---
 name: approval-tests
-description: Writes approval tests (snapshot/golden master testing) for Python, JavaScript/TypeScript, or Java. Use when verifying complex output, characterization testing legacy code, testing combinations, or working with .approved/.received files.
+description: Writes approval/golden-master tests. Use when verifying complex output, characterizing legacy code, or testing combinations.
 ---
 
 STARTER_CHARACTER = 📸

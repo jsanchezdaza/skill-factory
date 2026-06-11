@@ -1,6 +1,6 @@
 ---
 name: bdd-with-approvals
-description: Scannable BDD tests written in domain language. Use when doing BDD.
+description: Scannable BDD tests written in domain language. Use when writing scenario-based acceptance tests, domain-readable specs, or executable specifications that double as documentation.
 ---
 
 # BDD with Approval Tests

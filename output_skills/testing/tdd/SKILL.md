@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Test-driven development (TDD) process used when writing code. Use whenever you are adding any new code, unless the user explicitly asks to skip TDD or the code is exploratory/spike.
+description: TDD process for writing code. Use whenever adding new code, unless explicitly asked to skip TDD or the code is exploratory.
 ---
 
 # Test-Driven Development Process

@@ -1,6 +1,6 @@
 ---
 name: story-splitting
-description: Detects stories that are too big and applies splitting heuristics. Identifies linguistic red flags (and, or, manage, handle, including) and suggests concrete splitting strategies. Use when breaking down requirements or splitting large work.
+description: Detects oversized stories via red flags (and, or, manage) and splits them. Use when breaking down requirements.
 allowed-tools:
   - Read
   - AskUserQuestion

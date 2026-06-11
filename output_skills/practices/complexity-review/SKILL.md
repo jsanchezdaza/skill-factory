@@ -1,6 +1,6 @@
 ---
 name: complexity-review
-description: Reviews technical proposals against 30 complexity dimensions. Questions necessity of scale, consistency, and resilience. Use when proposing technologies (Kafka, microservices, event sourcing) or designing systems. Pushes for simplest viable approach.
+description: Reviews technical proposals against 30 complexity dimensions. Use when proposing tech or designing systems.
 allowed-tools:
   - Read
   - AskUserQuestion

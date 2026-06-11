@@ -1,6 +1,6 @@
 ---
 name: refactoring
-description: Refactoring process. Invoke immediately when user or document mentions refactoring, or proactively when code gets too complex or messy.
+description: Refactoring process. Invoke immediately when user mentions refactoring, or proactively when code is too complex, messy, or hard to read.
 ---
 
 # Refactoring Production Code

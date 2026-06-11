@@ -1,6 +1,6 @@
 ---
 name: hamburger-method
-description: Slices features into vertical deliverable pieces using the Hamburger Method. Generates 4-5 implementation options per layer and composes minimal end-to-end slices. Use when slicing work, breaking down features into layers, or delivering incrementally.
+description: Slices features into vertical pieces via layered options. Use when work is large but has no obvious split points.
 allowed-tools:
   - Read
   - AskUserQuestion

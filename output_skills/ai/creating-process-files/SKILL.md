@@ -1,6 +1,6 @@
 ---
 name: creating-process-files
-description: Creates process files - text as code instructions for reliable AI workflows. Use when creating new process files.
+description: Creates process files — structured step-by-step instructions for reliable, repeatable AI workflows. Use when codifying a reusable process for AI to follow consistently.
 ---
 
 # Creating Process Files

@@ -1,6 +1,6 @@
 ---
 name: event-modeling
-description: Designs systems using Event Modeling.
+description: Designs systems using Event Modeling. Use when modeling event-driven systems, mapping commands/events/read models, or producing vertical slices for implementation.
 ---
 
 STARTER_CHARACTER = 🗺️

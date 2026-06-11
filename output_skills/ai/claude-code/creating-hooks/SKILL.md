@@ -1,6 +1,6 @@
 ---
 name: creating-hooks
-description: Creates Claude Code hooks.
+description: Creates Claude Code hooks. Use when setting up automated behaviors triggered by Claude Code lifecycle events (pre/post tool, session start, stop, notifications).
 ---
 
 STARTER_CHARACTER = 🪝

@@ -1,6 +1,6 @@
 ---
 name: traductor-bilingue
-description: Translates technical text between English and Spanish preserving tone and format. Keeps technical terms in English when common in Spanish dev teams (deploy, pull request, pipeline, staging). Use when translating technical documentation, code comments, or team communication.
+description: Translates technical text between English and Spanish, keeping dev terms in English. Use when translating docs, comments, or team communication.
 allowed-tools:
   - Read
   - AskUserQuestion

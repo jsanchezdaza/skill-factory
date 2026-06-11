@@ -1,6 +1,6 @@
 ---
 name: code-simplifier
-description: Simplifies and refines code for clarity, readability, and maintainability. Reduces complexity without changing behavior. Use when simplifying, cleaning up, or reducing complexity in code.
+description: Simplifies code for clarity without changing behavior. Use when code is hard to read, has grown stale, or a recent change introduced unnecessary complexity.
 ---
 
 STARTER_CHARACTER = 🧹

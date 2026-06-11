@@ -1,6 +1,6 @@
 ---
 name: hexagonal-architecture
-description: Applies hexagonal (ports & adapters) architecture. Use when designing application structure, separating domain from infrastructure, creating testable boundaries, or when user mentions ports, adapters, hexagonal, or clean architecture.
+description: Applies hexagonal (ports & adapters) architecture. Use when separating domain from infrastructure or user mentions ports, adapters, hexagonal, or clean architecture.
 ---
 
 # Hexagonal Architecture
