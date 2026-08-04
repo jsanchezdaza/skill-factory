@@ -30,7 +30,8 @@ Never change test assertions, test data, or test logic.
 
 - Determine scope: use specified files, or identify related files (imports, shared functionality), or ask user
 - Add files in scope to todo list
-- Find or create ./test.sh, verify all tests pass
+- Identify the project's test command (CLAUDE.md, Makefile, build file — e.g. `./gradlew test`,
+  `npm test`, `./test.sh`) and verify all tests pass before touching anything
 - Remove comments from files in scope (commit per file)
 
 ## 2. Main Refactoring
@@ -55,8 +56,8 @@ For each refactor:
 1. Ensure all tests pass
 2. Choose and perform the simplest possible refactoring (one at a time)
 3. Ensure all tests pass after the change
-4. Commit each successful refactor with the message format: "- r <refactoring>" (the message must include the "- r" prefix)
-   Prefer small granular commits. If applying the same refactoring pattern to multiple locations, change one location at a time and commit each separately.
+4. Commit each successful refactor as `refactor: <what changed>`, following the repo's commit
+   convention. Prefer small granular commits. If applying the same refactoring pattern to multiple locations, change one location at a time and commit each separately.
 5. Provide a status update after each refactor
 
 ## 3. Final Evaluation

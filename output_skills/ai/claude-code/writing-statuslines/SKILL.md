@@ -51,7 +51,7 @@ The script receives this via stdin:
   "transcript_path": "/path/to/transcript.json",
   "cwd": "/current/working/directory",
   "model": {
-    "id": "claude-opus-4-1",
+    "id": "claude-opus-5",
     "display_name": "Opus"
   },
   "workspace": {
