@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ $# -eq 0 ]; then
+  printf 'usage: harness-doctor ROOT [ROOT...]\n' >&2
+  exit 2
+fi
+
+for root in "$@"; do
+  if [ ! -d "$root" ]; then
+    printf 'harness-doctor: no such root: %s\n' "$root" >&2
+    exit 2
+  fi
+done
+
+entries=$(mktemp)
+problems=$(mktemp)
+trap 'rm -f "$entries" "$problems"' EXIT
+
+find -L "$@" -name SKILL.md | while read -r skill; do
+  dir=${skill%/SKILL.md}
+  printf '%s\t%s\t%s/SKILL.md\n' "${dir##*/}" "$skill" "$(cd "$dir" && pwd -P)"
+done | sort > "$entries"
+
+name_to_location() { cut -f1,2 "$entries"; }
+backup_sourced() { cut -f2 "$entries" | { grep '/\.backups/' || true; }; }
+names_with_several_real_files() { cut -f1,3 "$entries" | sort -u | cut -f1 | uniq -d; }
+
+name_to_location
+
+{
+  backup_sourced | sed 's/^/backup: /'
+  names_with_several_real_files | sed 's/^/duplicate: /'
+} > "$problems"
+
+cat "$problems" >&2
+
+[ ! -s "$problems" ]
