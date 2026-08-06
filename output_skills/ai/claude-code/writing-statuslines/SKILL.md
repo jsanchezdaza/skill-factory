@@ -1,6 +1,6 @@
 ---
 name: writing-statuslines
-description: Writes Claude Code status line scripts. Use when creating, customizing, or debugging statusline configurations.
+description: Configures the agent status line and terminal title. Use when creating, customizing, or debugging a statusline — Claude Code status line scripts, or the Codex TUI footer via /statusline, /title and tui.status_line.
 ---
 
 STARTER_CHARACTER = 📊
@@ -11,6 +11,18 @@ Update the reference docs to get the latest from Anthropic:
 ```bash
 python ~/.claude/skills/writing-statuslines/scripts/update-docs.py
 ```
+
+## Client support
+
+The three clients use fundamentally different models here. Pick the section that matches the client before writing anything.
+
+| Client | Model | Section |
+|---|---|---|
+| Claude Code | arbitrary script; receives session JSON on stdin, first stdout line is the status line | most of this skill |
+| Codex | built-in footer items only; **no arbitrary scripts** | [Codex](#codex) below |
+| OpenCode | no status line configuration exists in its schema | not supported |
+
+What carries across all of them is the design advice, not the mechanics: pick three to five fields, keep it glanceable in under a second, and don't duplicate information already visible elsewhere.
 
 ## What Status Lines Are
 
@@ -117,6 +129,40 @@ Test scripts manually with mock JSON:
 ```bash
 echo '{"model":{"display_name":"Sonnet"},"workspace":{"current_dir":"/test"},"cost":{"total_cost_usd":0.05},"context_window":{"used_percentage":42.5}}' | ./statusline.sh
 ```
+
+## Codex
+
+Codex uses built-in footer items rather than arbitrary status-line scripts. Nothing above this section applies — there is no script, no stdin JSON, and no stdout contract.
+
+**Preferred workflow**
+
+1. Run `/statusline` in the Codex TUI.
+2. Select and reorder the desired footer items.
+3. Confirm Codex persisted the result to `tui.status_line` in `~/.codex/config.toml`.
+4. Use `/title` separately for terminal window or tab title items.
+
+**Direct configuration**
+
+```toml
+[tui]
+status_line = ["model-with-reasoning", "context-remaining", "current-dir", "git-branch"]
+status_line_use_colors = true
+```
+
+Set `status_line = []` to hide the footer. Available items vary by Codex version and can include model, reasoning, context statistics, rate limits, git branch, token counters, session id, current directory, project root, and Codex version. Prefer the interactive picker when unsure of the current identifiers.
+
+For the terminal title:
+
+```toml
+[tui]
+terminal_title = ["spinner", "project", "git-branch"]
+```
+
+Use `/debug-config` when another configuration layer overrides the expected value.
+
+## OpenCode
+
+Not supported. OpenCode's configuration schema has no status line key. Don't port a Claude Code statusline script here.
 
 ## Reference
 

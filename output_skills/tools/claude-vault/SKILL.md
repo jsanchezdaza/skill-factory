@@ -17,7 +17,9 @@ Manages notes in the user's **Wallapop** Obsidian vault, enforcing its establish
 
 **Vault root**: `/Users/javier.sanchezdaza/Documents/Wallapop`
 
-This is a personal **Obsidian vault of work notes** — plans, proposals, spikes, and personal goals. It is **not** a software project (no code to build/run) and **not** the source of truth for Claude's behavior: hard rules and practices now live in the `CLAUDE.md` files (global `~/.claude/CLAUDE.md` and per-project ones), not here. Treat this vault as documentation.
+This is a personal **Obsidian vault of work notes** — plans, proposals, spikes, and personal goals. It is **not** a software project (no code to build/run) and **not** the source of truth for the agent's behavior: hard rules and practices live in the agent instruction files — `~/.claude/CLAUDE.md` and per-project `CLAUDE.md` for Claude Code, `AGENTS.md` for Codex and OpenCode — not here. Treat this vault as documentation.
+
+The vault is outside normal repository workspaces. Keep every operation scoped to the vault root.
 
 ## When to use / Do NOT use
 
@@ -107,4 +109,4 @@ Read the note first with the Read tool. Preserve all existing conventions — ne
 - Adding `#tags`, `tags:`, or `- [ ]` checkboxes unprompted.
 - Creating a plan outside `plans/` without a clear reason.
 - Generating wikilinks artificially to notes that aren't related.
-- Looking for rules/practices/memory here — those live in the `CLAUDE.md` files now.
+- Looking for rules/practices/memory here — those live in the agent instruction files (`CLAUDE.md` / `AGENTS.md`).

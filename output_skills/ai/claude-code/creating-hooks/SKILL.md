@@ -1,6 +1,6 @@
 ---
 name: creating-hooks
-description: Creates Claude Code hooks. Use when setting up automated behaviors triggered by Claude Code lifecycle events (pre/post tool, session start, stop, notifications).
+description: Creates lifecycle hooks for Claude Code and Codex. Use when setting up automated behaviors triggered by agent lifecycle events (pre/post tool, permission requests, session start, stop, notifications), or when debugging a hook that does not fire.
 ---
 
 STARTER_CHARACTER = 🪝
@@ -14,7 +14,32 @@ python ~/.claude/skills/creating-hooks/scripts/update-docs.py
 
 ## What Hooks Are
 
-Shell commands that execute at lifecycle points in Claude Code. Unlike prompts, hooks are deterministic—they always run when triggered.
+Shell commands that execute at lifecycle points in the agent. Unlike prompts, hooks are deterministic—they always run when triggered.
+
+## Client support
+
+Claude Code and Codex share this hook model: the same event names, the same `matcher` + `hooks[]` shape, the same exit-code semantics, and the same `hookSpecificOutput` JSON protocol. Everything in this skill applies to both. Only where the configuration lives and how it is trusted differ:
+
+| | Claude Code | Codex |
+|---|---|---|
+| User scope | `~/.claude/settings.json` | `~/.codex/hooks.json` |
+| Project scope | `.claude/settings.json` (shared), `.claude/settings.local.json` (not committed) | `.codex/hooks.json`, in a trusted project |
+| Alternate format | — | inline in `config.toml`; never define the same layer in both JSON and TOML |
+| Trust step | none | review or retrust with `/hooks` after changes, then restart if needed |
+| Project-root variable | `$CLAUDE_PROJECT_DIR` | resolve paths absolutely |
+
+**OpenCode does not have this hook system.** Its configuration has no `hooks` key; it extends behavior through JS plugins declared in the `plugin` array. Do not port a hook here — write a plugin instead.
+
+### Codex workflow
+
+1. Inspect active hook sources and `/hooks` trust state before editing.
+2. Choose user scope (`~/.codex`) or trusted project scope (`.codex`).
+3. Prefer `hooks.json` over inline TOML.
+4. Use an external script for non-trivial logic, with absolute executable paths when PATH may be restricted.
+5. Validate the JSON, run the handler against representative stdin, and assert the intended exit code and output shape.
+6. Retrust with `/hooks`, then restart the session when necessary.
+
+Codex matchers are regex strings: shell and unified-exec tools match `Bash`; file patches match `apply_patch`, `Edit`, or `Write`.
 
 ## Configuration
 
@@ -22,6 +47,8 @@ Hooks live in settings files:
 - `~/.claude/settings.json` - User settings (all projects)
 - `.claude/settings.json` - Project settings (shared via git)
 - `.claude/settings.local.json` - Local project settings (not committed)
+
+Codex uses the same block under the `hooks` key of `~/.codex/hooks.json`.
 
 ```json
 {
@@ -67,6 +94,8 @@ Hooks live in settings files:
 - `Stop` - Agent finishes
 - `SubagentStop` - Subagent finishes
 - `Notification` - Alerts sent (matcher: notification type)
+
+**Event coverage differs slightly**: Codex also fires `PostCompact` and `SubagentStart`; `Notification` is Claude Code only. Check the client before relying on an event at the edge of this list.
 
 ## Exit Codes
 
